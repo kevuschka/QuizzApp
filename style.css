@@ -1,0 +1,64 @@
+*, *:before, *:after {
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik';
+}
+
+.flex {
+    display: flex;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.cursor-p {
+    cursor: pointer;
+}
+
+.page {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+.card-container {
+    justify-content: center;
+    height: 30rem;
+    width: 26rem;
+}
+
+.card-nav {
+    align-items: center;
+    height: 100%;
+    width: 100px;
+    background-color: blue;
+    color: white;
+}
+
+.nav-item {
+    margin: 8px 0px;
+}
+
+.card {
+    width: 100%;
+}
+
+.car-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.c-white {
+    color: white;
+}

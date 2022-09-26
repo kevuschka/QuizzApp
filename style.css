@@ -60,5 +60,5 @@ body {
 }
 
 .c-white {
-    color: white;
+    color: white !important;
 }

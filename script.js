@@ -131,35 +131,46 @@ let selectedHTML = 1;
 let selectedCSS = 0;
 let selectedJS = 0;
 
+function resetNavSelection() {
+    selectedHTML = 0;
+    selectedCSS = 0;
+    selectedJS = 0;
+}
+
+
 function selectedCategory() {
     if(selectedHTML) {
         hideBorderAll();
-        show(htmlNavBorder);
+        showBorder('htmlNavBorder');
     } else if (selectedCSS) {
         hideBorderAll();
-        show(cssNavBorder);
+        showBorder('cssNavBorder');
     } else {
         hideBorderAll();
-        show(jsNavBorder);
+        showBorder('jsNavBorder');
     }
 }
 
+
 function showBorder(id) {
-    document.getElementById(`${id}`).classList.add('show-border-left');
+    document.getElementById(id).classList.add('show-border-left');
 }
 
 function hideBorderAll() {
-    hideBorder(htmlNavBorder);
-    hideBorder(cssNavBorder);
-    hideBorder(jsNavBorder);
+    hideBorder(`htmlNavBorder`);
+    hideBorder(`cssNavBorder`);
+    hideBorder(`jsNavBorder`);
 }
 
 function hideBorder(id) {
-    document.getElementById(`${id}`).classList.remove('show-border-left');
+    document.getElementById(id).classList.remove('show-border-left');
 }
 
 // ########## RENDER HTML START CONTENT ##########
 function renderHTMLQuiz() {
+    resetNavSelection();
+    selectedHTML = 1;
+    selectedCategory();
     let container = document.getElementById('card-img');
     container.innerHTML = renderHTMLQuizContent();
 }
@@ -171,6 +182,9 @@ function renderHTMLQuizContent() {
 
 // ########## RENDER CSS START CONTENT ##########
 function renderCSSQuiz() {
+    resetNavSelection();
+    selectedCSS = 1;
+    selectedCategory();
     let container = document.getElementById('card-img');
     container.innerHTML = renderCSSQuizContent();
 }
@@ -182,6 +196,9 @@ function renderCSSQuizContent() {
 
 // ########## RENDER JS START CONTENT ##########
 function renderJSQuiz() {
+    resetNavSelection();
+    selectedJS = 1;
+    selectedCategory();
     let container = document.getElementById('card-img');
     container.innerHTML = renderJSQuizContent();
 }

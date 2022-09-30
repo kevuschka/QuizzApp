@@ -127,4 +127,66 @@ let jsQuestions = [
     },
 ];
 
+let selectedHTML = 1;
+let selectedCSS = 0;
+let selectedJS = 0;
 
+function selectedCategory() {
+    if(selectedHTML) {
+        hideBorderAll();
+        show(htmlNavBorder);
+    } else if (selectedCSS) {
+        hideBorderAll();
+        show(cssNavBorder);
+    } else {
+        hideBorderAll();
+        show(jsNavBorder);
+    }
+}
+
+function showBorder(id) {
+    document.getElementById(`${id}`).classList.add('show-border-left');
+}
+
+function hideBorderAll() {
+    hideBorder(htmlNavBorder);
+    hideBorder(cssNavBorder);
+    hideBorder(jsNavBorder);
+}
+
+function hideBorder(id) {
+    document.getElementById(`${id}`).classList.remove('show-border-left');
+}
+
+// ########## RENDER HTML START CONTENT ##########
+function renderHTMLQuiz() {
+    let container = document.getElementById('card-img');
+    container.innerHTML = renderHTMLQuizContent();
+}
+
+
+function renderHTMLQuizContent() {
+    return `<div class="start-screen flex column">Welcome to <br> The Awesome HTML Quiz <br> <span>Ready for the Challange?</span></div>`;
+}
+
+// ########## RENDER CSS START CONTENT ##########
+function renderCSSQuiz() {
+    let container = document.getElementById('card-img');
+    container.innerHTML = renderCSSQuizContent();
+}
+
+
+function renderCSSQuizContent() {
+    return `<div class="start-screen flex column">Welcome to <br> The Awesome CSS Quiz <br> <span>Ready for the Challange?</span></div>`;
+}
+
+// ########## RENDER JS START CONTENT ##########
+function renderJSQuiz() {
+    let container = document.getElementById('card-img');
+    container.innerHTML = renderJSQuizContent();
+}
+
+
+function renderJSQuizContent() {
+    return `<div class="start-screen flex column">Welcome to <br> The Awesome JS Quiz <br> <span>Ready for the Challange?</span></div>`;
+}

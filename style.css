@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Rubik';
+    font-family: 'Rubik' !important;
 }
 
 .flex {
@@ -34,31 +34,81 @@ body {
 
 .card-container {
     justify-content: center;
-    height: 30rem;
-    width: 26rem;
+    height: 100%;
+    max-height: 28rem;
+    width: 100%;
+    max-width: 56rem;
+    border-radius: 20px;
 }
 
 .card-nav {
     align-items: center;
     height: 100%;
     width: 100px;
-    background-color: blue;
+    background-color: rgb(50, 50, 102);
     color: white;
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+}
+
+.card-nav-img {
+    width: 50px;
+    margin-top: 12px;
 }
 
 .nav-item {
-    margin: 8px 0px;
+    margin: 6px 0px;
+    width: 100%;
+    border-left: 4px solid transparent;
+    padding-right: 4px;
+    text-align: center;
+}
+
+.nav-item:hover {
+    border-left: 4px solid white;
+}
+
+.show-border-left {
+    border-left: 4px solid white;
+}
+
+.nav-item:nth-child(2) {
+    margin-top: 32px;
 }
 
 .card {
     width: 100%;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
 }
 
-.car-img {
-    width: 100%;
-    object-fit: cover;
+.button-container {
+    justify-content: flex-end;
 }
 
 .c-white {
     color: white !important;
+}
+
+
+/* ########## START SCREEN ########## */
+.start-screen {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background-image: url('img/brainbg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 286px;
+    border-top-right-radius: 20px;
+}
+
+.start-screen span {
+    font-size: 14px;
+    font-weight: lighter;
 }

@@ -143,6 +143,15 @@ function getInnerHtmlOf(id, todo) {
 }
 
 
+function addClasslistOf(id, theclass) {
+    document.getElementById(id).classList.add(theclass);
+}
+
+
+function removeClasslistOf(id, theclass) {
+    document.getElementById(id).classList.remove(theclass);
+}
+
 function hide(id) {
     document.getElementById(id).classList.add('d-none');
 }
@@ -180,7 +189,8 @@ function hideBorder(id) {
 function renderHTMLQuiz() {
     selectHTML();
     getInnerHtmlOf('card-img', renderHTMLQuizContent());
-    renderHTMLQuizBody()
+    renderHTMLQuizBody();
+    removeClasslistOf('card-body', 'bg-gray');
 }
 
 
@@ -210,7 +220,8 @@ function renderHTMLQuizBodyContent() {
 function renderCSSQuiz() {
     selectCSS();
     getInnerHtmlOf('card-img', renderCSSQuizContent());
-    renderCSSQuizBody()
+    renderCSSQuizBody();
+    removeClasslistOf('card-body', 'bg-gray');
 }
 
 
@@ -241,6 +252,7 @@ function renderJSQuiz() {
     selectJS();
     getInnerHtmlOf('card-img', renderJSQuizContent());
     renderJSQuizBody();
+    removeClasslistOf('card-body', 'bg-gray');
 }
 
 
@@ -265,4 +277,9 @@ function renderJSQuizBodyContent() {
         <h5 class="card-title">Javascript</h5>
         <p class="card-text">Bist du bereit für die Javascript-Challange? Nimm dir 5 Minuten Zeit dafür.</p>
         <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startJS()">Go somewhere</a></div>`;
+}
+
+function startJS() {
+    getInnerHtmlOf('card-img', '');
+    addClasslistOf('card-body', 'bg-gray');
 }

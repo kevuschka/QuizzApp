@@ -24,6 +24,10 @@ body {
     cursor: pointer;
 }
 
+.d-none {
+    display: none;
+}
+
 .page {
     justify-content: center;
     align-items: center;

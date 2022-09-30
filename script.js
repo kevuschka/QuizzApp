@@ -112,9 +112,9 @@ let jsQuestions = [
     {
         'question': 'Welche Endung hat eine Javascript Datei?',
         'answer_1': '.jc',
-        'answer_2': 'jsct',
-        'answer_3': 'js',
-        'answer_4': 'jst',
+        'answer_2': '.jsct',
+        'answer_3': '.js',
+        'answer_4': '.jst',
         'right_answer': 3,
     },
     {
@@ -140,6 +140,11 @@ function resetNavSelection() {
 
 function getInnerHtmlOf(id, todo) {
     document.getElementById(id).innerHTML = todo;
+}
+
+
+function hide(id) {
+    document.getElementById(id).classList.add('d-none');
 }
 
 
@@ -175,6 +180,7 @@ function hideBorder(id) {
 function renderHTMLQuiz() {
     selectHTML();
     getInnerHtmlOf('card-img', renderHTMLQuizContent());
+    renderHTMLQuizBody()
 }
 
 
@@ -188,10 +194,23 @@ function selectHTML() {
     selectedHTML = 1;
     selectedCategory();
 }
+
+
+function renderHTMLQuizBody() {
+    getInnerHtmlOf('card-body', renderHTMLQuizBodyContent());
+}
+
+function renderHTMLQuizBodyContent() {
+    return `
+        <h5 class="card-title">HTML</h5>
+        <p class="card-text">Die HTML-Challange ist zum warm werden. Solltest du ohne Probleme hinbekommen!</p>
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startHTLM()">Go somewhere</a></div>`;
+}
 // ########## RENDER CSS START CONTENT ##########
 function renderCSSQuiz() {
     selectCSS();
     getInnerHtmlOf('card-img', renderCSSQuizContent());
+    renderCSSQuizBody()
 }
 
 
@@ -205,15 +224,28 @@ function selectCSS() {
     selectedCategory();
 }
 
+
+function renderCSSQuizBody() {
+    getInnerHtmlOf('card-body', renderCSSQuizBodyContent());
+}
+
+function renderCSSQuizBodyContent() {
+    return `
+        <h5 class="card-title">CSS</h5>
+        <p class="card-text">Mache die Challenge erst, wenn du vorherige Challange fehlerfrei bestanden hast.</p>
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startCSS()">Go somewhere</a></div>`;
+}
+
 // ########## RENDER JS START CONTENT ##########
 function renderJSQuiz() {
     selectJS();
     getInnerHtmlOf('card-img', renderJSQuizContent());
+    renderJSQuizBody();
 }
 
 
 function renderJSQuizContent() {
-    return `<div class="start-screen flex column">Welcome to <br> The Awesome JS Quiz <br> <span>Ready for the Challange?</span></div>`;
+    return `<div class="start-screen flex column">Welcome to <br> The Awesome Javascript Quiz <br> <span>Ready for the Challange?</span></div>`;
 }
 
 
@@ -225,5 +257,12 @@ function selectJS() {
 
 
 function renderJSQuizBody() {
-    
+    getInnerHtmlOf('card-body', renderJSQuizBodyContent());
+}
+
+function renderJSQuizBodyContent() {
+    return `
+        <h5 class="card-title">Javascript</h5>
+        <p class="card-text">Bist du bereit für die Javascript-Challange? Nimm dir 5 Minuten Zeit dafür.</p>
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startJS()">Go somewhere</a></div>`;
 }

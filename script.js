@@ -138,6 +138,11 @@ function resetNavSelection() {
 }
 
 
+function getInnerHtmlOf(id, todo) {
+    document.getElementById(id).innerHTML = todo;
+}
+
+
 function selectedCategory() {
     if(selectedHTML) {
         hideBorderAll();
@@ -168,11 +173,8 @@ function hideBorder(id) {
 
 // ########## RENDER HTML START CONTENT ##########
 function renderHTMLQuiz() {
-    resetNavSelection();
-    selectedHTML = 1;
-    selectedCategory();
-    let container = document.getElementById('card-img');
-    container.innerHTML = renderHTMLQuizContent();
+    selectHTML();
+    getInnerHtmlOf('card-img', renderHTMLQuizContent());
 }
 
 
@@ -180,13 +182,16 @@ function renderHTMLQuizContent() {
     return `<div class="start-screen flex column">Welcome to <br> The Awesome HTML Quiz <br> <span>Ready for the Challange?</span></div>`;
 }
 
+
+function selectHTML() {
+    resetNavSelection();
+    selectedHTML = 1;
+    selectedCategory();
+}
 // ########## RENDER CSS START CONTENT ##########
 function renderCSSQuiz() {
-    resetNavSelection();
-    selectedCSS = 1;
-    selectedCategory();
-    let container = document.getElementById('card-img');
-    container.innerHTML = renderCSSQuizContent();
+    selectCSS();
+    getInnerHtmlOf('card-img', renderCSSQuizContent());
 }
 
 
@@ -194,16 +199,31 @@ function renderCSSQuizContent() {
     return `<div class="start-screen flex column">Welcome to <br> The Awesome CSS Quiz <br> <span>Ready for the Challange?</span></div>`;
 }
 
+function selectCSS() {
+    resetNavSelection();
+    selectedCSS = 1;
+    selectedCategory();
+}
+
 // ########## RENDER JS START CONTENT ##########
 function renderJSQuiz() {
-    resetNavSelection();
-    selectedJS = 1;
-    selectedCategory();
-    let container = document.getElementById('card-img');
-    container.innerHTML = renderJSQuizContent();
+    selectJS();
+    getInnerHtmlOf('card-img', renderJSQuizContent());
 }
 
 
 function renderJSQuizContent() {
     return `<div class="start-screen flex column">Welcome to <br> The Awesome JS Quiz <br> <span>Ready for the Challange?</span></div>`;
+}
+
+
+function selectJS() {
+    resetNavSelection();
+    selectedJS = 1;
+    selectedCategory();
+}
+
+
+function renderJSQuizBody() {
+    
 }

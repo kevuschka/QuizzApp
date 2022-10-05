@@ -1,135 +1,88 @@
-let htmlQuestions = [
-    {
-        'question': 'Was sind HTML tags?',
-        'answer_1': 'Tags, die im Geschäft den Alarm auslösen, wenn etwas geklaut wird.',
-        'answer_2': 'Code der so aussieht:',
-        'answer_3': 'Damit der Webbrowser weiß, was anzuzeigen ist.',
-        'answer_4': 'Das sind kurze Codekommentare.',
-        'right_answer': 3,
-    },
-    {
-        'question': 'Wofür steht HTML?',
-        'answer_1': 'Hyper Text Markup Language',
-        'answer_2': 'Home Tool Markup Language',
-        'answer_3': 'Hyperlinks and Text Markup Language',
-        'answer_4': 'High Transition Mail Loop',
-        'right_answer': 1,
-    },
-    {
-        'question': 'Was ist die Dateiendung für HTML Dateien?',
-        'answer_1': '.html',
-        'answer_2': '.htm',
-        'answer_3': '.com',
-        'answer_4': '.doc',
-        'right_answer': 1,
-    },
-    {
-        'question': 'Wer ist der Erfinder von HTML?',
-        'answer_1': 'Bruce Lee',
-        'answer_2': 'Mark Zuckerberg',
-        'answer_3': 'Tim Berners-Lee',
-        'answer_4': 'Dennis Ritchie',
-        'right_answer': 3,
-    },
-    {
-        'question': 'Was sind die beiden Hauptkomponenten der HTML Struktur?',
-        'answer_1': 'header und footer',
-        'answer_2': 'head und body',
-        'answer_3': 'body und footer',
-        'answer_4': 'meta und body',
-        'right_answer': 2,
-    },
-];
 
-let cssQuestions = [
-    {
-        'question': 'Wofür steht CSS?',
-        'answer_1': 'Camelcase Style Sheets',
-        'answer_2': 'Case Sensitive Style',
-        'answer_3': 'Corresponding Style Sheets',
-        'answer_4': 'Cascading Style Sheets',
-        'right_answer': 4,
-    },
-    {
-        'question': 'Woraus besteht ein CSS Element?',
-        'answer_1': 'Aus einem "Key-Value Pair".',
-        'answer_2': 'Aus einem Selector und einem Eigenschaftenteil.',
-        'answer_3': 'Aus einer Überschrift und einem Text.',
-        'answer_4': 'Aus mindestens einer Funktion.',
-        'right_answer': 2,
-    },
-    {
-        'question': 'Wie sieht der universal Selector aus?',
-        'answer_1': '*',
-        'answer_2': '/',
-        'answer_3': '+',
-        'answer_4': '-',
-        'right_answer': 1,
-    },
-    {
-        'question': 'Welchen Selector Typen gibt es nicht?',
-        'answer_1': 'Child Selector',
-        'answer_2': 'ID Selector',
-        'answer_3': 'Class Selector',
-        'answer_4': 'IMEI Selector',
-        'right_answer': 4,
-    },
-    {
-        'question': 'Welche Endund hat eine CSS Datei?',
-        'answer_1': '.cs',
-        'answer_2': '.css',
-        'answer_3': '.doc',
-        'answer_4': '.ssc',
-        'right_answer': 2,
-    },
-];
+function renderGameBody() {
+    getInnerHtmlOf('card-body', renderGameBodyContent());
+}
 
-let jsQuestions = [
-    {
-        'question': 'Welche Aussage stimmt?',
-        'answer_1': 'Javascript ist eine objektorientierte Skiptsprache.',
-        'answer_2': 'Javascript ist eine objektorientierte Programmiersprache.',
-        'answer_3': 'Der Sourcecode muss in jedem Fall compiliert werden.',
-        'answer_4': 'Javascript ist ein Nachfolger von Java.',
-        'right_answer': 1,
-    },
-    {
-        'question': 'Was gibt "console.log(String.raw`HelloTwitter\nworld`);" aus?',
-        'answer_1': '"HelloTwitter\\nworld"',
-        'answer_2': '"HelloTwitter world"',
-        'answer_3': '"HelloTwitter \nworld"',
-        'answer_4': '"Hello Twitter world"',
-        'right_answer': 1,
-    },
-    {
-        'question': 'Was gibt "console.log(typeof NaN)" aus',
-        'answer_1': 'NaN',
-        'answer_2': 'number',
-        'answer_3': 'null',
-        'answer_4': 'undefined',
-        'right_answer': 2,
-    },
-    {
-        'question': 'Welche Endung hat eine Javascript Datei?',
-        'answer_1': '.jc',
-        'answer_2': '.jsct',
-        'answer_3': '.js',
-        'answer_4': '.jst',
-        'right_answer': 3,
-    },
-    {
-        'question': 'Was gibt "console.log(typeof typeof 1)" aus?',
-        'answer_1': '1',
-        'answer_2': 'number',
-        'answer_3': 'string',
-        'answer_4': 'true',
-        'right_answer': 3,
-    },
-];
 
-let selectedHTML = 1;
-let selectedCSS = 0;
-let selectedJS = 0;
+function renderGameBodyContent() {
+    return `<div class="answers flex column" id="answers"></div>
+            <div class="nextPage flex" id="nextPage"></div>`;
+}
+
+
+function renderArrowButtons() {
+    if (page == 0) {
+        if(selectedAnswers[page]) {
+            return renderNextButton();
+        } else {
+            return renderNextButtonDisabled();
+        }
+    } else if ((0 < page) && (page < 5)) {
+        if(selectedAnswers[page]) {
+            return renderBackNextButtons();
+        } else {
+            return renderBackNextButtonDisabled();
+        }
+    } else {
+        addClasslistOf('nextPage', 'd-none');
+    }
+}
+
+
+function renderBackButton() {
+    return `<img class="buttons back cursor-p" src="img/back.png" onclick="backPage()">`;
+}
+
+
+function renderNextButton() {
+    return `<img class="buttons next cursor-p" src="img/next.png" onclick="nextPage()">`;
+}
+
+
+function renderBackNextButtons() {
+    return `<img class="buttons back cursor-p" src="img/back.png" onclick="backPage()">
+            <img class="buttons next cursor-p" src="img/next.png" onclick="nextPage()">`;
+}
+
+
+function renderNextButtonDisabled() {
+    return `<img class="buttons next cursor-d" src="img/nextNone.png">`;
+}
+
+
+function renderBackNextButtonDisabled() {
+    return `<img class="buttons back cursor-p" src="img/back.png" onclick="backPage()">
+            <img class="buttons next cursor-d" src="img/nextNone.png">`;
+}
+
+
+function backPage() {
+    page--;
+    let selected = selectedAnswers[page];
+
+    if(selectedHTML) {
+        startHTML();
+    } else if(selectedCSS) {
+        startCSS();
+    } else {
+        renderFullAnswersResultJS(selected);
+    }
+    
+
+
+}
+
+
+function nextPage() {
+    if(selectedHTML) {
+        startHTML();
+    } else if(selectedCSS) {
+        startCSS();
+    } else {
+        renderNextPageJS();
+    }
+}
+
 
 function resetNavSelection() {
     selectedHTML = 0;
@@ -143,6 +96,11 @@ function getInnerHtmlOf(id, todo) {
 }
 
 
+function getInnerHtmlOfPlus(id, todo) {
+    document.getElementById(id).innerHTML += todo;
+}
+
+
 function addClasslistOf(id, theclass) {
     document.getElementById(id).classList.add(theclass);
 }
@@ -151,6 +109,7 @@ function addClasslistOf(id, theclass) {
 function removeClasslistOf(id, theclass) {
     document.getElementById(id).classList.remove(theclass);
 }
+
 
 function hide(id) {
     document.getElementById(id).classList.add('d-none');
@@ -172,8 +131,9 @@ function selectedCategory() {
 
 
 function showBorder(id) {
-    document.getElementById(id).classList.add('show-border-left');
+    document.getElementById(id).classList.add('selected-nav-item');
 }
+
 
 function hideBorderAll() {
     hideBorder(`htmlNavBorder`);
@@ -181,105 +141,48 @@ function hideBorderAll() {
     hideBorder(`jsNavBorder`);
 }
 
+
 function hideBorder(id) {
-    document.getElementById(id).classList.remove('show-border-left');
-}
-
-// ########## RENDER HTML START CONTENT ##########
-function renderHTMLQuiz() {
-    selectHTML();
-    getInnerHtmlOf('card-img', renderHTMLQuizContent());
-    renderHTMLQuizBody();
-    removeClasslistOf('card-body', 'bg-gray');
+    document.getElementById(id).classList.remove('selected-nav-item');
 }
 
 
-function renderHTMLQuizContent() {
-    return `<div class="start-screen flex column">Welcome to <br> The Awesome HTML Quiz <br> <span>Ready for the Challange?</span></div>`;
+function enterGameMode() {
+    addClasslistOf('card-body', 'card-body-game');
+    removeClasslistOf('card-img', 'card-img-startscreen');
+    removeClasslistOf('card-body', 'flex-centering');
+    addClasslistOf('card-body', 'space');
 }
 
 
-function selectHTML() {
-    resetNavSelection();
-    selectedHTML = 1;
-    selectedCategory();
+function quitGameMode() {
+    removeClasslistOf('card-body', 'card-body-game');
+    removeClasslistOf('card', 'no-border');
+    addClasslistOf('card-img', 'card-img-startscreen');   
+}
+
+function resetVariables() {
+    page = -1;
+    selectedAnswers = [];
+    rightAnswers = 0;
 }
 
 
-function renderHTMLQuizBody() {
-    getInnerHtmlOf('card-body', renderHTMLQuizBodyContent());
-}
-
-function renderHTMLQuizBodyContent() {
-    return `
-        <h5 class="card-title">HTML</h5>
-        <p class="card-text">Die HTML-Challange ist zum warm werden. Solltest du ohne Probleme hinbekommen!</p>
-        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startHTLM()">Go somewhere</a></div>`;
-}
-// ########## RENDER CSS START CONTENT ##########
-function renderCSSQuiz() {
-    selectCSS();
-    getInnerHtmlOf('card-img', renderCSSQuizContent());
-    renderCSSQuizBody();
-    removeClasslistOf('card-body', 'bg-gray');
-}
-
-
-function renderCSSQuizContent() {
-    return `<div class="start-screen flex column">Welcome to <br> The Awesome CSS Quiz <br> <span>Ready for the Challange?</span></div>`;
-}
-
-function selectCSS() {
-    resetNavSelection();
-    selectedCSS = 1;
-    selectedCategory();
+function renderQuestionContent(category) {
+    if(category) {
+        return `<div class="start-screen flex column" id="start-screen">
+                    ${htmlQuestions[page].question}
+                </div>`;
+    } else if (category) {
+        return `<div class="start-screen flex column" id="start-screen">
+                    ${cssQuestions[page].question}
+                </div>`;
+    } else if(category) {
+        return `<div class="start-screen flex column" id="start-screen">
+                    ${jsQuestions[page].question}
+                </div>`;
+    }
 }
 
 
-function renderCSSQuizBody() {
-    getInnerHtmlOf('card-body', renderCSSQuizBodyContent());
-}
 
-function renderCSSQuizBodyContent() {
-    return `
-        <h5 class="card-title">CSS</h5>
-        <p class="card-text">Mache die Challenge erst, wenn du vorherige Challange fehlerfrei bestanden hast.</p>
-        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startCSS()">Go somewhere</a></div>`;
-}
-
-// ########## RENDER JS START CONTENT ##########
-function renderJSQuiz() {
-    selectJS();
-    getInnerHtmlOf('card-img', renderJSQuizContent());
-    renderJSQuizBody();
-    removeClasslistOf('card-body', 'bg-gray');
-}
-
-
-function renderJSQuizContent() {
-    return `<div class="start-screen flex column">Welcome to <br> The Awesome Javascript Quiz <br> <span>Ready for the Challange?</span></div>`;
-}
-
-
-function selectJS() {
-    resetNavSelection();
-    selectedJS = 1;
-    selectedCategory();
-}
-
-
-function renderJSQuizBody() {
-    getInnerHtmlOf('card-body', renderJSQuizBodyContent());
-}
-
-function renderJSQuizBodyContent() {
-    return `
-        <h5 class="card-title">Javascript</h5>
-        <p class="card-text">Bist du bereit für die Javascript-Challange? Nimm dir 5 Minuten Zeit dafür.</p>
-        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startJS()">Go somewhere</a></div>`;
-}
-
-function startJS() {
-    getInnerHtmlOf('card-img', '');
-    addClasslistOf('card-body', 'bg-gray');
-}

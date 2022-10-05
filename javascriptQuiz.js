@@ -1,4 +1,3 @@
-
 // ########## RENDER JS-GAME START CONTENT ##########
 function renderJSQuiz() {
     resetVariables();
@@ -9,7 +8,7 @@ function renderJSQuiz() {
     quitGameMode();
 }
 
-
+// for marking the current nav item
 function selectJS() {
     resetNavSelection();
     selectedJS = 1;
@@ -130,7 +129,8 @@ function renderJSResultContent() {
     return `<div class="start-screen end-screen flex column" id="start-screen">
                 <img class="brain-result" src="img/brain result.png">
                 <span id="result-line">Du hast <b>${rightAnswers} von 5</b> Fragen richtig beantwortet!</>
-            </div>`;
+            </div>
+            <img class="trophy show-trophy absolute" src="img/tropy.png">`;
 }
 
 

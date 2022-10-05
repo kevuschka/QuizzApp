@@ -50,6 +50,10 @@ body {
     align-items: center;
 }
 
+.overflow-hidden {
+    overflow-x: hidden;
+}
+
 /* 
 gray-bg: #f7f7f7
  */
@@ -177,9 +181,7 @@ gray-bg: #f7f7f7
     color: white !important;
 }
 
-.brain-result {
-    width: 108px;
-}
+
 
 
 /* ########## START SCREEN ########## */
@@ -204,6 +206,7 @@ gray-bg: #f7f7f7
     font-weight: lighter;
 }
 
+/* ########## END SCREEN ########## */
 .end-screen {
     background-image: none;
     background-color: #f7f7f7;
@@ -212,5 +215,29 @@ gray-bg: #f7f7f7
 
 .end-screen span {
     font-size: 20px !important;
+}
+
+.brain-result {
+    width: 108px;
+}
+
+.trophy {
+    /* transform: translateX(122px); */
+    right: 0px;
+    top: 96px;
+    width: 121px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(122px);
+    } 
+    to {
+        transform: translateX(0px);
+    }
+}
+
+.show-trophy {
+    animation: 1s slideIn ease-in-out;
 }
 

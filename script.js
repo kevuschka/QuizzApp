@@ -59,7 +59,6 @@ function renderBackNextButtonDisabled() {
 function backPage() {
     page--;
     let selected = selectedAnswers[page];
-
     if(selectedHTML) {
         startHTML();
     } else if(selectedCSS) {
@@ -67,9 +66,6 @@ function backPage() {
     } else {
         renderFullAnswersResultJS(selected);
     }
-    
-
-
 }
 
 

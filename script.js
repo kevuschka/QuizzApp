@@ -154,7 +154,8 @@ function enterGameMode() {
 function quitGameMode() {
     removeClasslistOf('card-body', 'card-body-game');
     removeClasslistOf('card', 'no-border');
-    addClasslistOf('card-img', 'card-img-startscreen');   
+    addClasslistOf('card-img', 'card-img-startscreen'); 
+    removeClasslistOf('card-body', 'flex-centering');  
 }
 
 function resetVariables() {

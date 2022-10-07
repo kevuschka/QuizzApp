@@ -135,11 +135,11 @@ function renderGameBodyContent() {
 // ########## RENDER BUTTONS BACK/NEXT ##########
 function renderArrowButtons() {
     if (page == 0) {
-        return alreadyDidOrNot();
+        return firstPageAlreadyDidOrNot();
     } else if ((0 < page) && (page < 5)) {
         return alreadyDidOrNot();
     } else {
-        return addClasslistOf('nextPage', 'd-none');
+        addClasslistOf('nextPage', 'd-none');
     }
 }
 
@@ -163,24 +163,32 @@ function alreadyDidOrNot() {
 
 
 function renderNextButtonDisabled() {
-    return `<img class="buttons next cursor-d" src="img/nextNone.png">`;
-}
-
-
-function renderNextButton() {
-    return `<img class="buttons next cursor-p" src="img/next.png" onclick="nextPage()">`;
-}
-
-
-function renderBackNextButtonDisabled() {
-    return `<img class="buttons back cursor-p" src="img/back.png" onclick="backPage()">
+    return `<div>Seite ${page+1} von ${jsQuestions.length}</div>
             <img class="buttons next cursor-d" src="img/nextNone.png">`;
 }
 
 
-function renderBackNextButtons() {
-    return `<img class="buttons back cursor-p" src="img/back.png" onclick="backPage()">
+function renderNextButton() {
+    return `<div>Seite ${page+1} von ${jsQuestions.length}</div>
             <img class="buttons next cursor-p" src="img/next.png" onclick="nextPage()">`;
+}
+
+
+function renderBackNextButtonDisabled() {
+    return `<div>Seite ${page+1} von ${jsQuestions.length}</div>
+            <div>
+                <img class="buttons back cursor-p" src="img/back.png" onclick="backPage()">
+                <img class="buttons next cursor-d" src="img/nextNone.png">
+            </div>`;
+}
+
+
+function renderBackNextButtons() {
+    return `<div>Seite ${page+1} von ${jsQuestions.length}</div>
+            <div>
+                <img class="buttons back cursor-p" src="img/back.png" onclick="backPage()">
+                <img class="buttons next cursor-p" src="img/next.png" onclick="nextPage()">
+            </div>`;
 }
 
 

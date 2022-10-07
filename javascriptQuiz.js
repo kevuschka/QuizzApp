@@ -135,5 +135,5 @@ function renderJSResultBody() {
 
 function renderJSResultBodyContent() {
     return `
-        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="renderJSQuiz();startJS()">Spiel wiederholen!</a></div>`;
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="renderJSQuiz();pageMinusOne();startJS()">Spiel wiederholen!</a></div>`;
 }

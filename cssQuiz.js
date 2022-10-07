@@ -144,5 +144,5 @@ function renderCSSResultBody() {
 
 function renderCSSResultBodyContent() {
     return `
-        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="renderCSSQuiz();startCSS()">Spiel wiederholen!</a></div>`;
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="renderCSSQuiz();pageMinusOne();startCSS()">Spiel wiederholen!</a></div>`;
 }

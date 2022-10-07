@@ -19,7 +19,7 @@
 </head>
 <body onload="selectedCategory();renderHTMLQuiz()">
 
-    <div class="page flex">
+    <div class="page flex relative">
         <div class="card-container flex">
             <div class="card-nav flex column">
                 <img class="card-nav-img" src="img/logo.png">
@@ -31,11 +31,12 @@
             </div>
             <div class="card overflow-hidden" id="card">
                 <div class="card-content flex column relative overflow-hidden">
-                        <div class="card-img" id="card-img"></div>
+                        <div class="card-img relative" id="card-img"></div>
                         <div class="card-body space" id="card-body"></div>
                 </div>
             </div>
         </div>
+    
     </div>
 </body>
 </html>

@@ -137,3 +137,5 @@ let rightAnswers = 0;
 
 let selectedAnswers = [];
 
+let progress = -20;
+

@@ -30,7 +30,7 @@ function renderJSStartBodyContent() {
     return `
         <h5 class="card-title">Javascript</h5>
         <p class="card-text">Bist du bereit für die Javascript-Challange? Nimm dir 5 Minuten Zeit dafür.</p>
-        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startJS()">Go somewhere</a></div>`;
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="startJS()">Spiel starten</a></div>`;
 }
 
 
@@ -49,6 +49,7 @@ function startJS() {
 
 function renderQuestionJS() {
     getInnerHtmlOf('card-img', renderQuestionContentJS());
+    renderProgressBar();
 }
 
 
@@ -59,23 +60,51 @@ function renderQuestionContentJS() {
 }
 
 
+
+//############## ALLGEMEIN
+
+function renderProgressBar() {
+    getInnerHtmlOfPlus('card-img', renderProgressBarContent());
+    document.getElementById('progress-bar').style = `width: ${progress}%`;
+}
+
+
+function renderProgressBarContent() {
+    return `<div class="progress bar absolute" id="progress" style="height: 5px;">
+                <div class="progress-bar bs-success-acid" id="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>`;
+}
+
+function progressBarNext() {
+    progress = 20*(selectedAnswers.length);
+    document.getElementById('progress-bar').style = `width: ${progress}%`;
+}
+
+function progressBarBack() {
+    progress -= 20;
+}
+// ALLGEMEIN ###############
+
+
+
 function renderAnswersJS() {
     let answer;
     for (let i = 1; i < 5; i++) {
         answer = jsQuestions[page][`answer_${i}`];
-        getInnerHtmlOfPlus('answers', `<div class="answer selected card-body cursor-p" id="answer${i}" onclick="clickJS(${i})">${answer}</div>`);
+        getInnerHtmlOfPlus('answers', `<div class="answer selected card-body cursor-p" id="answer${i}" onclick="clickAnswerJS(${i})">${answer}</div>`);
     }
     getInnerHtmlOf('nextPage', renderArrowButtons());
 }
 
 
-function clickJS(i) {
+function clickAnswerJS(i) {
     selectedAnswers.push(i);
     let selected = selectedAnswers[page];
     if (selected == jsQuestions[page].right_answer) {
         rightAnswers++;
     }
     renderFullAnswersResultJS(selected);  //also in the backPage() function
+    progressBarNext();
 }
 
 
@@ -98,10 +127,10 @@ function renderAnswersResultJS() {
 function coloringAnswersResultJS(selected) {
     document.getElementById(`answer${selected}`).style.border = '2px solid black';
     if(selected == jsQuestions[page].right_answer) {
-        addClasslistOf(`answer${selected}`, 'bg-success');
+        addClasslistOf(`answer${selected}`, 'bs-success-acid');
     } else {
         addClasslistOf(`answer${selected}`, 'bg-danger');
-        addClasslistOf(`answer${jsQuestions[page].right_answer}`, 'bg-success');
+        addClasslistOf(`answer${jsQuestions[page].right_answer}`, 'bs-success-acid');
     }
 }
 
@@ -121,7 +150,7 @@ function resultJS() {
     getInnerHtmlOf('card-img', renderJSResultContent());
     renderJSResultBody();
     removeClasslistOf('card-body', 'space');
-    addClasslistOf('card-body', 'flex-centering');
+    addClasslistOf('card-body', 'flex-centering-result');
 }
 
 

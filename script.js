@@ -144,9 +144,10 @@ function hideBorder(id) {
 
 
 function enterGameMode() {
+    // addClasslistOf('card-img', 'show-progress-bar');
     addClasslistOf('card-body', 'card-body-game');
     removeClasslistOf('card-img', 'card-img-startscreen');
-    removeClasslistOf('card-body', 'flex-centering');
+    removeClasslistOf('card-body', 'flex-centering-result');
     addClasslistOf('card-body', 'space');
 }
 
@@ -155,13 +156,14 @@ function quitGameMode() {
     removeClasslistOf('card-body', 'card-body-game');
     removeClasslistOf('card', 'no-border');
     addClasslistOf('card-img', 'card-img-startscreen'); 
-    removeClasslistOf('card-body', 'flex-centering');  
+    removeClasslistOf('card-body', 'flex-centering-result');  
 }
 
 function resetVariables() {
     page = -1;
     selectedAnswers = [];
     rightAnswers = 0;
+    progress = 0;
 }
 
 

@@ -1,0 +1,38 @@
+@media screen and (max-width: 770px) {
+    .trophy {
+        top: 100px;
+        width: 66px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .trophy {
+        top: 70px;
+    }
+
+    .nav-item {
+        font-size: 12px;
+    }
+
+    .start-screen {
+        font-size: 14px;
+    }
+
+    #result-line {
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .quizTitle {
+        font-size: 20px;
+    }
+
+    .answer {
+        font-size: 12px !important;
+    }
+
+    .brain-result {
+        width: 80px;
+    }
+}

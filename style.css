@@ -251,6 +251,10 @@ acid-green: #4ebf16
     width: 121px;
 }
 
+.quizTitle {
+    font-size: 30px;
+}
+
 @keyframes slideIn {
     from {
         transform: translateX(122px);

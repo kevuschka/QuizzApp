@@ -131,11 +131,11 @@ let selectedHTML = 1;
 let selectedCSS = 0;
 let selectedJS = 0;
 
-let page = -1;
+let page = 0;
 
 let rightAnswers = 0;
 
 let selectedAnswers = [];
 
-let progress = -20;
+let progress;
 

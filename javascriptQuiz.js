@@ -75,6 +75,9 @@ function clickAnswerJS(i) {
     let selected = selectedAnswers[page];
     if (selected == jsQuestions[page].right_answer) {
         rightAnswers++;
+        AUDIO_SUCCESS.play();
+    } else {
+        AUDIO_FAIL.play();
     }
     renderFullAnswersResultJS(selected);  //also in the backPage() function
     progressBarNext();

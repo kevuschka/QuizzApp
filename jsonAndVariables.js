@@ -139,3 +139,5 @@ let selectedAnswers = [];
 
 let progress;
 
+let AUDIO_SUCCESS = new Audio('audio/rightAnswer.mp3');
+let AUDIO_FAIL = new Audio('audio/wrongAnswer.mp3');

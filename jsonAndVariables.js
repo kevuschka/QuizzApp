@@ -52,7 +52,7 @@ let cssQuestions = [
     },
     {
         'question': 'Woraus besteht ein CSS Element?',
-        'answer_1': 'Aus einem "Key-Value Pair".',
+        'answer_1': 'Aus einem "Key:Value Pair".',
         'answer_2': 'Aus einem Selector und einem Eigenschaftenteil.',
         'answer_3': 'Aus einer Überschrift und einem Text.',
         'answer_4': 'Aus mindestens einer Funktion.',
@@ -102,7 +102,7 @@ let jsQuestions = [
         'right_answer': 1,
     },
     {
-        'question': 'Was gibt "console.log(typeof NaN)" aus',
+        'question': 'Was gibt "console.log(typeof NaN)" aus?',
         'answer_1': 'NaN',
         'answer_2': 'number',
         'answer_3': 'null',

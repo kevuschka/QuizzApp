@@ -141,3 +141,4 @@ let progress;
 
 let AUDIO_SUCCESS = new Audio('audio/rightAnswer.mp3');
 let AUDIO_FAIL = new Audio('audio/wrongAnswer.mp3');
+let AUDIO_RESULT = new Audio('audio/resultAnswer.mp3');

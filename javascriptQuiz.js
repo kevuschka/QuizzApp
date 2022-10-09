@@ -115,19 +115,16 @@ function renderNextPageJS() {
     if(page < (jsQuestions.length-1)) {
         startJS();
     } else {
+        result();
         resultJS();
     }
 }
 
 // ########## RENDER LAST PAGE (RESULT PAGE) ##########
 function resultJS() {
-    removeClasslistOf('card-body', 'bg-gray');
-    quitGameMode();
-    getInnerHtmlOf('card-img', renderResultContent());
     getInnerHtmlOf('quizCategory', 'Javascript');
     renderJSResultBody();
-    removeClasslistOf('card-body', 'space');
-    addClasslistOf('card-body', 'flex-centering-result');
+    AUDIO_RESULT.play();
 }
 
 

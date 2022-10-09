@@ -35,7 +35,7 @@ function enterGameMode() {
 
 function enterGameModeResponsive() {
     addClasslistOf('card-img', 'card-img-game-resp');
-    addClasslistOf('card-body', '.card-img-game-resp');
+    addClasslistOf('card-body', '.card-body-game-resp');
 }
 
 
@@ -51,7 +51,7 @@ function quitGameMode() {
 
 function quitGameModeResponsive() {
     removeClasslistOf('card-img', 'card-img-game-resp');
-    removeClasslistOf('card-body', '.card-img-game-resp');
+    removeClasslistOf('card-body', '.card-body-game-resp');
 }
 
 // ########## RESET ##########
@@ -242,6 +242,15 @@ function pageMinusOne() {
 }
 
 // ########## RESULT ##########
+function result() {
+    removeClasslistOf('card-body', 'bg-gray');
+    quitGameMode();
+    getInnerHtmlOf('card-img', renderResultContent());
+    removeClasslistOf('card-body', 'space');
+    addClasslistOf('card-body', 'flex-centering-result');
+}
+
+
 function renderResultContent() {
     return `<div class="start-screen end-screen flex column">
                 <img class="brain-result" src="img/brain result.png">

@@ -105,6 +105,10 @@ acid-green: #4ebf16
     border-bottom-left-radius: 20px !important;
 }
 
+.btn-group {
+    display: none !important;
+}
+
 .card-nav-img {
     width: 50px;
     margin-top: 18px;

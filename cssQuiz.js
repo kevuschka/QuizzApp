@@ -54,7 +54,7 @@ function renderQuestionCSS() {
 
 
 function renderQuestionContentCSS() {
-    return `<div class="start-screen question-sreen flex column">
+    return `<div class="start-screen question-screen flex">
                 <p class="question">${cssQuestions[page].question}</p>
             </div>`;
 }
@@ -115,29 +115,17 @@ function renderNextPageCSS() {
     if(page < cssQuestions.length-1) {
         startCSS();
     } else {
+        result();
         resultCSS();
     }
 }
 
 // ########## RENDER LAST PAGE (RESULT PAGE) ##########
 function resultCSS() {
-    removeClasslistOf('card-body', 'bg-gray');
-    quitGameMode();
-    getInnerHtmlOf('card-img', renderResultContent());
     getInnerHtmlOf('quizCategory', 'CSS');
     renderCSSResultBody();
-    removeClasslistOf('card-body', 'space');
-    addClasslistOf('card-body', 'flex-centering-result');
+    AUDIO_RESULT.play();
 }
-
-
-// function renderCSSResultContent() {
-//     return `<div class="start-screen end-screen flex column" id="start-screen">
-//                 <img class="brain-result" src="img/brain result.png">
-//                 <span id="result-line">Du hast <b>${rightAnswers} von 5</b> Fragen richtig beantwortet!</>
-//             </div>
-//             <img class="trophy show-trophy absolute" src="img/tropy.png">`;
-// }
 
 
 function renderCSSResultBody() {

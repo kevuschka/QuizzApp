@@ -24,13 +24,24 @@
         <div class="card-container flex">
             <div class="card-nav flex">
                 <img class="card-nav-img" src="img/logo.png">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="img/menu.png">
+                    </button>
+                    <ul class="dropdown-menu">
+                      <!-- Dropdown menu links -->
+                        <li><div class="nav-item cursor-p" id="htmlNavBorder" onclick="renderHTMLQuiz()">HTLM</div></li>
+                        <li><div class="nav-item cursor-p" id="cssNavBorder" onclick="renderCSSQuiz()">CSS</div></li>
+                        <li><div class="nav-item cursor-p" id="jsNavBorder" onclick="renderJSQuiz()">Javascript</div></li>
+                    </ul>
+                  </div>
                 <div class="nav-item-container flex">
                     <div class="nav-item cursor-p" id="htmlNavBorder" onclick="renderHTMLQuiz()">HTLM</div>
                     <div class="nav-item cursor-p" id="cssNavBorder" onclick="renderCSSQuiz()">CSS</div>
                     <div class="nav-item cursor-p" id="jsNavBorder" onclick="renderJSQuiz()">Javascript</div>
                 </div>
             </div>
-            <div class="card overflow-hidden" id="card">
+            <div class="card overflow-hidden border-radius-resp" id="card">
                 <div class="card-content flex column relative overflow-hidden">
                         <div class="card-img relative" id="card-img"></div>
                         <div class="card-body space" id="card-body"></div>

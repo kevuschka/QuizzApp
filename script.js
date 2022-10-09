@@ -72,31 +72,31 @@ function resetNavSelection() {
 
 function selectedCategory() {
     if(selectedHTML) {
-        hideBorderAll();
-        showBorder('htmlNavBorder');
+        hideSelectionAll();
+        showSelection('htmlNavSelection');
     } else if (selectedCSS) {
-        hideBorderAll();
-        showBorder('cssNavBorder');
+        hideSelectionAll();
+        showSelection('cssNavSelection');
     } else {
-        hideBorderAll();
-        showBorder('jsNavBorder');
+        hideSelectionAll();
+        showSelection('jsNavSelection');
     }
 }
 
 
-function hideBorderAll() {
-    hideBorder(`htmlNavBorder`);
-    hideBorder(`cssNavBorder`);
-    hideBorder(`jsNavBorder`);
+function hideSelectionAll() {
+    hideSelection(`htmlNavSelection`);
+    hideSelection(`cssNavSelection`);
+    hideSelection(`jsNavSelection`);
 }
 
 
-function showBorder(id) {
+function showSelection(id) {
     document.getElementById(id).classList.add('selected-nav-item');
 }
 
 
-function hideBorder(id) {
+function hideSelection(id) {
     document.getElementById(id).classList.remove('selected-nav-item');
 }
 

@@ -132,14 +132,12 @@ acid-green: #4ebf16
 }
 
 .nav-item:hover {
-    /* border-left: 4px solid white; */
     border: 2px solid white;
 }
 
 .selected-nav-item {
-    background-color: white;
+    background-color: white !important;
     color: rgb(50, 50, 102);
-    /* border-left: 4px solid white; */
 }
 
 .card {

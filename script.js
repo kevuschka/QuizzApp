@@ -25,6 +25,7 @@ function hide(id) {
 
 // ########## GAME MODES CHANGING THE SCREEN ##########
 function enterGameMode() {
+    enterGameModeResponsive();
     addClasslistOf('card-body', 'card-body-game');
     removeClasslistOf('card-img', 'card-img-startscreen');
     removeClasslistOf('card-body', 'flex-centering-result');
@@ -32,11 +33,25 @@ function enterGameMode() {
 }
 
 
+function enterGameModeResponsive() {
+    addClasslistOf('card-img', 'card-img-game-resp');
+    addClasslistOf('card-body', '.card-img-game-resp');
+}
+
+
 function quitGameMode() {
+    quitGameModeResponsive();
+    removeClasslistOf('card-img', '.card-img-game-resp');
     removeClasslistOf('card-body', 'card-body-game');
     removeClasslistOf('card', 'no-border');
     addClasslistOf('card-img', 'card-img-startscreen'); 
     removeClasslistOf('card-body', 'flex-centering-result');  
+}
+
+
+function quitGameModeResponsive() {
+    removeClasslistOf('card-img', 'card-img-game-resp');
+    removeClasslistOf('card-body', '.card-img-game-resp');
 }
 
 // ########## RESET ##########

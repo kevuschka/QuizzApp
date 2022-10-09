@@ -6,6 +6,10 @@
 }
 
 @media screen and (max-width: 600px) {
+    .page {
+        align-items: unset;
+        padding: 60px 10px;
+    }
     .trophy {
         top: 70px;
     }
@@ -14,25 +18,85 @@
         font-size: 12px;
     }
 
-    .start-screen {
-        font-size: 14px;
-    }
-
     #result-line {
         font-size: 16px !important;
     }
 }
 
 @media screen and (max-width: 470px) {
+    .page {
+        padding: 0px;
+    }
+
+    .card-container {
+        flex-direction: column;
+        justify-content: unset;
+        max-height: 100vh;
+        max-width: 100%;
+    }
+
+    .card-nav {
+        flex-direction: row;
+        border-top-left-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+
+        width: 100%;
+        height: 80px;
+    }
+
+    .card-nav-img {
+        width: 50px;
+        margin: 16px;
+    }
+
+    .nav-item-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 70%;
+        height: 100%;
+        gap: 16px;
+        margin: 0 6px;
+    }
+
+    .nav-item {
+        font-size: 18px;
+    }
+
+    .card {
+        height: 100% !important;
+    }
+
+    .card-img {
+        height: 80%;
+    }
+
+    .card-img-game-resp {
+        height: 300px;
+    }
+
+    .start-screen {
+        font-size: 25px;
+    }
+
+    .card-body-game-resp {
+        justify-content: space-between;
+    }
+
     .quizTitle {
         font-size: 20px;
     }
 
     .answer {
-        font-size: 12px !important;
+        font-size: 16px !important;
+        border: 1px solid lightgray;
     }
 
     .brain-result {
-        width: 80px;
+        width: 148px;
+    }
+
+    .trophy {
+        top: 290px;
     }
 }

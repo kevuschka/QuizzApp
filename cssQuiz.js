@@ -54,8 +54,8 @@ function renderQuestionCSS() {
 
 
 function renderQuestionContentCSS() {
-    return `<div class="start-screen flex column">
-                ${cssQuestions[page].question}
+    return `<div class="start-screen question-sreen flex column">
+                <p class="question">${cssQuestions[page].question}</p>
             </div>`;
 }
 

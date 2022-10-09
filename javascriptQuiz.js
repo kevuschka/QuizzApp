@@ -54,8 +54,8 @@ function renderQuestionJS() {
 
 
 function renderQuestionContentJS() {
-    return `<div class="start-screen flex column">
-                ${jsQuestions[page].question}
+    return `<div class="start-screen question-screen flex">
+                <p class="question">${jsQuestions[page].question}</p>
             </div>`;
 }
 

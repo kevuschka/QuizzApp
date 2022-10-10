@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
-<body onload="renderHTMLQuiz()">
+<body onload="renderQuiz('html')">
 
     <div class="page flex">
         <div class="card-container flex">
@@ -30,15 +30,15 @@
                     </button>
                     <ul class="dropdown-menu">
                       <!-- Dropdown menu links -->
-                        <li><div class="nav-item cursor-p" onclick="renderHTMLQuiz()">HTLM</div></li>
-                        <li><div class="nav-item cursor-p" onclick="renderCSSQuiz()">CSS</div></li>
-                        <li><div class="nav-item cursor-p" onclick="renderJSQuiz()">Javascript</div></li>
+                        <li><div class="nav-item cursor-p" onclick="renderQuiz('html')">HTLM</div></li>
+                        <li><div class="nav-item cursor-p" onclick="renderQuiz('css')">CSS</div></li>
+                        <li><div class="nav-item cursor-p" onclick="renderQuiz('js')">Javascript</div></li>
                     </ul>
                   </div>
                 <div class="nav-item-container flex">
-                    <div class="nav-item cursor-p" id="htmlNavSelection" onclick="renderHTMLQuiz()">HTLM</div>
-                    <div class="nav-item cursor-p" id="cssNavSelection" onclick="renderCSSQuiz()">CSS</div>
-                    <div class="nav-item cursor-p" id="jsNavSelection" onclick="renderJSQuiz()">Javascript</div>
+                    <div class="nav-item cursor-p" id="htmlNavSelection" onclick="renderQuiz('html')">HTLM</div>
+                    <div class="nav-item cursor-p" id="cssNavSelection" onclick="renderQuiz('css')">CSS</div>
+                    <div class="nav-item cursor-p" id="jsNavSelection" onclick="renderQuiz('js')">Javascript</div>
                 </div>
             </div>
             <div class="card overflow-hidden border-radius-resp" id="card">

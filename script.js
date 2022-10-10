@@ -23,6 +23,47 @@ function hide(id) {
     document.getElementById(id).classList.add('d-none');
 }
 
+// ########## RENDER QUIZ ##########
+function renderQuiz(quiz) {
+    resetVariables();
+    selectNav(quiz);
+    getInnerHtmlOf('card-img', renderStartContent(quiz));
+    renderStartBody(quiz);
+    removeClasslistOf('card-body', 'bg-gray');
+    quitGameMode();
+}
+
+
+function selectNav(quiz) {
+    resetNavSelection();
+    if(`${quiz}` == 'html') {selectedHTML = 1;}
+    else if (`${quiz}` == 'css') {selectedCSS = 1;}
+    else {selectedJS = 1;}
+    navSelection();
+}
+
+
+function renderStartContent(quiz) {
+    if(`${quiz}` == 'html') {
+        return `<div class="start-screen flex column">Welcome to <br> The Awesome HTML Quiz <br> <span>Ready for the Challange?</span></div>`;
+    } else if (`${quiz}` == 'css') {
+        return `<div class="start-screen flex column">Welcome to <br> The Awesome CSS Quiz <br> <span>Ready for the Challange?</span></div>`;
+    } else {
+        return `<div class="start-screen flex column">Welcome to <br> The Awesome Javascript Quiz <br> <span>Ready for the Challange?</span></div>`;
+    }
+}
+
+
+function renderStartBody(quiz) {
+    if(`${quiz}` == 'html') {
+        getInnerHtmlOf('card-body', renderHTMLStartBodyContent());
+    } else if (`${quiz}` == 'css') {
+        getInnerHtmlOf('card-body', renderCSSStartBodyContent());
+    } else {
+        getInnerHtmlOf('card-body', renderJSStartBodyContent());
+    }
+}
+
 // ########## GAME MODES CHANGING THE SCREEN ##########
 function enterGameMode() {
     enterGameModeResponsive();
@@ -54,6 +95,8 @@ function quitGameModeResponsive() {
     removeClasslistOf('card-body', '.card-body-game-resp');
 }
 
+
+
 // ########## RESET ##########
 function resetVariables() {
     page = 0;
@@ -70,7 +113,7 @@ function resetNavSelection() {
 }
 
 
-function selectedCategory() {
+function navSelection() {
     if(selectedHTML) {
         hideSelectionAll();
         showSelection('htmlNavSelection');
@@ -100,22 +143,7 @@ function hideSelection(id) {
     document.getElementById(id).classList.remove('selected-nav-item');
 }
 
-// ########## RENDER QUESTION ##########
-function renderQuestionContent(category) {
-    if(category) {
-        return `<div class="start-screen flex column">
-                    ${htmlQuestions[page].question}
-                </div>`;
-    } else if (category) {
-        return `<div class="start-screen flex column">
-                    ${cssQuestions[page].question}
-                </div>`;
-    } else if(category) {
-        return `<div class="start-screen flex column">
-                    ${jsQuestions[page].question}
-                </div>`;
-    }
-}
+
 
 // ########## PROGRESS BAR ##########
 function renderProgressBar() {
@@ -126,7 +154,7 @@ function renderProgressBar() {
 
 function renderProgressBarContent() {
     return `<div class="progress bar absolute" id="progress" style="height: 5px;">
-                <div class="progress-bar bs-success-acid" id="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-success-acid" id="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>`;
 }
 
@@ -145,6 +173,132 @@ function renderGameBody() {
 function renderGameBodyContent() {
     return `<div class="answers flex column" id="answers"></div>
             <div class="nextPage flex" id="nextPage"></div>`;
+}
+
+// ########## START THE GAME ##########
+function start(quiz) {
+    page++;
+    if(selectedAnswers[page]) {
+        renderFullAnswersResult(quiz, selectedAnswers[page]);
+    } else {
+        enterGameMode();
+        renderQuestion(quiz);
+        renderGameBody();
+        renderAnswers(quiz);
+    }
+}
+
+// ########## RENDER QUESTION ##########
+function renderQuestion(quiz) {
+    if(`${quiz}` == 'html') {
+        getInnerHtmlOf('card-img', renderQuestionContent(quiz));
+    } else if (`${quiz}` == 'css') {
+        getInnerHtmlOf('card-img', renderQuestionContent(quiz));
+    } else {
+        getInnerHtmlOf('card-img', renderQuestionContent(quiz));
+    }
+    renderProgressBar();
+}
+
+
+function renderQuestionContent(quiz) {
+    if(`${quiz}` == 'html') {
+        return renderHTMLQuestion();
+    } else if (`${quiz}` == 'css') {
+        return renderCSSQuestion();
+    } else {
+        return renderJSQuestion();
+    }
+}
+
+function renderHTMLQuestion() {
+    return `<div class="start-screen question-screen flex">
+                <p class="question">${htmlQuestions[page].question}</p>
+            </div>`;
+}
+
+
+function renderCSSQuestion() {
+    return `<div class="start-screen question-screen flex">
+                <p class="question">${cssQuestions[page].question}</p>
+            </div>`;
+}
+
+
+function renderJSQuestion() {
+    return `<div class="start-screen question-screen flex">
+                <p class="question">${jsQuestions[page].question}</p>
+            </div>`;
+}
+
+// ########## RENDER THE POSSIBLE ANSWERS ##########
+function renderAnswers(quiz) {
+    let answer;
+    for (let i = 1; i < 5; i++) {
+        if(`${quiz}` == 'html') {answer = htmlQuestions[page][`answer_${i}`];}
+        else if (`${quiz}` == 'css') {answer = cssQuestions[page][`answer_${i}`];}
+        else {answer = jsQuestions[page][`answer_${i}`];}
+        getInnerHtmlOfPlus('answers', `<div class="answer selected card-body cursor-p" id="${quiz}Answer${i}" onclick="clickAnswer('${quiz}', ${i})">${answer}</div>`);
+    }
+    getInnerHtmlOf('nextPage', renderArrowButtons());
+}
+
+// ########## CLICK ON A POSSIBLE ANSWER ##########
+function clickAnswer(quiz, i) {
+    selectedAnswers.push(i);
+    let selected = selectedAnswers[page];
+    let rightAnswer;
+    rightAnswer = thatsTheRightAnswer(quiz);
+    if (selected == rightAnswer) {
+        rightAnswers++;
+        AUDIO_SUCCESS.play();
+    } else {AUDIO_FAIL.play();}
+    renderFullAnswersResult(quiz, selected);  //also in the backPage() function
+    progressBarNext();
+}
+
+// ########## RENDER ANSWERS WHEN ALREADY CLICKED ON AN ANSWER ##########
+function renderFullAnswersResult(quiz, selected) {
+    renderAnswersResult(quiz);
+    coloringAnswersResult(quiz, selected);
+}
+
+
+function renderAnswersResult(quiz) {
+    renderGameBody();
+    for (let i = 1; i < 5; i++) {
+        if(`${quiz}` == 'html') {answer = htmlQuestions[page][`answer_${i}`];}
+        else if (`${quiz}` == 'css') {answer = cssQuestions[page][`answer_${i}`];}
+        else {answer = jsQuestions[page][`answer_${i}`];}
+        getInnerHtmlOfPlus('answers', `<div class="answer card-body cursor-d" id="${quiz}Answer${i}">${answer}</div>`);
+    }
+    getInnerHtmlOf('nextPage', renderArrowButtons());
+}
+
+
+function coloringAnswersResult(quiz, selected) {
+    document.getElementById(`${quiz}Answer${selected}`).style.border = '2px solid black';
+    let rightAnswer;
+    rightAnswer = thatsTheRightAnswer(quiz);
+    if (selected == rightAnswer) {
+        addClasslistOf(`${quiz}Answer${selected}`, 'bg-success-acid');
+    } else {
+        addClasslistOf(`${quiz}Answer${selected}`, 'bg-danger');
+        colorThatAnswer(quiz);
+    }
+}
+
+/** The right answer depends on the current quiz category. */
+function thatsTheRightAnswer(quiz) {
+    if (`${quiz}` == 'html') {return htmlQuestions[page].right_answer;}
+    else if (`${quiz}` == 'html') {return  cssQuestions[page].right_answer;}
+    else {return jsQuestions[page].right_answer;}
+}
+
+function colorThatAnswer(quiz) {
+    if(`${quiz}` == 'html') {addClasslistOf(`${quiz}Answer${htmlQuestions[page].right_answer}`, 'bg-success-acid');}
+    else if (`${quiz}` == 'css') {addClasslistOf(`${quiz}Answer${cssQuestions[page].right_answer}`, 'bg-success-acid');}
+    else {addClasslistOf(`${quiz}Answer${jsQuestions[page].right_answer}`, 'bg-success-acid');}
 }
 
 // ########## RENDER BUTTONS BACK/NEXT ##########
@@ -211,22 +365,22 @@ function backPage() {
     page--;
     let selected = selectedAnswers[page];
     if(selectedHTML) {
-        renderFullAnswersResultHTML(selected);
+        renderFullAnswersResult('html', selected);
     } else if(selectedCSS) {
-        renderFullAnswersResultCSS(selected);
+        renderFullAnswersResult('css', selected);
     } else {
-        renderFullAnswersResultJS(selected);
+        renderFullAnswersResult('js', selected);
     }
 }
 
 
 function nextPage() {
     if(selectedHTML) {
-        renderNextPageHTML();
+        renderNextPage('html');
     } else if(selectedCSS) {
-        renderNextPageCSS();
+        renderNextPage('css');
     } else {
-        renderNextPageJS();
+        renderNextPage('js');
     }
 }
 
@@ -239,6 +393,16 @@ function nextPage() {
 */
 function pageMinusOne() {
     page = -1;
+}
+
+// ########## WHEN CLICK ON ARROW FOR NEXT PAGE ##########
+function renderNextPage(quiz) {
+    if(page < htmlQuestions.length-1) {
+        start(quiz);
+    } else {
+        result();
+        resultQuiz(quiz);
+    }
 }
 
 // ########## RESULT ##########
@@ -258,4 +422,22 @@ function renderResultContent() {
                 <span id="result-line">Du hast <b>${rightAnswers} von 5</b> Fragen richtig beantwortet!</>
             </div>
             <img class="trophy show-trophy absolute" src="img/tropy.png">`;
+}
+
+// ########## RESULT Body ##########
+function resultQuiz(quiz) {
+    getInnerHtmlOf('quizCategory', quiz.toUpperCase());
+    renderResultBody(quiz);
+    AUDIO_RESULT.play();
+}
+
+
+function renderResultBody(quiz) {
+    getInnerHtmlOf('card-body', renderResultBodyContent(quiz));
+}
+
+
+function renderResultBodyContent(quiz) {
+    return `
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="renderQuiz('${quiz}');pageMinusOne();start('${quiz}')">Spiel wiederholen!</a></div>`;
 }

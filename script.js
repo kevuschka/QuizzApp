@@ -23,79 +23,24 @@ function hide(id) {
     document.getElementById(id).classList.add('d-none');
 }
 
-// ########## RENDER QUIZ ##########
-function renderQuiz(quiz) {
-    resetVariables();
-    selectNav(quiz);
-    getInnerHtmlOf('card-img', renderStartContent(quiz));
-    renderStartBody(quiz);
-    removeClasslistOf('card-body', 'bg-gray');
-    quitGameMode();
+// ########## PROGRESS BAR ##########
+function renderProgressBar() {
+    getInnerHtmlOfPlus('card-img', renderProgressBarContent());
+    document.getElementById('progress-bar').style = `width: ${progress}%`;
 }
 
 
-function selectNav(quiz) {
-    resetNavSelection();
-    if(`${quiz}` == 'html') {selectedHTML = 1;}
-    else if (`${quiz}` == 'css') {selectedCSS = 1;}
-    else {selectedJS = 1;}
-    navSelection();
+function renderProgressBarContent() {
+    return `<div class="progress bar absolute" id="progress" style="height: 5px;">
+                <div class="progress-bar bg-success-acid" id="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>`;
 }
 
 
-function renderStartContent(quiz) {
-    if(`${quiz}` == 'html') {
-        return `<div class="start-screen flex column">Welcome to <br> The Awesome HTML Quiz <br> <span>Ready for the Challange?</span></div>`;
-    } else if (`${quiz}` == 'css') {
-        return `<div class="start-screen flex column">Welcome to <br> The Awesome CSS Quiz <br> <span>Ready for the Challange?</span></div>`;
-    } else {
-        return `<div class="start-screen flex column">Welcome to <br> The Awesome Javascript Quiz <br> <span>Ready for the Challange?</span></div>`;
-    }
+function progressBarNext() {
+    progress = 20*(selectedAnswers.length);
+    document.getElementById('progress-bar').style = `width: ${progress}%`;
 }
-
-
-function renderStartBody(quiz) {
-    if(`${quiz}` == 'html') {
-        getInnerHtmlOf('card-body', renderHTMLStartBodyContent());
-    } else if (`${quiz}` == 'css') {
-        getInnerHtmlOf('card-body', renderCSSStartBodyContent());
-    } else {
-        getInnerHtmlOf('card-body', renderJSStartBodyContent());
-    }
-}
-
-// ########## GAME MODES CHANGING THE SCREEN ##########
-function enterGameMode() {
-    enterGameModeResponsive();
-    addClasslistOf('card-body', 'card-body-game');
-    removeClasslistOf('card-img', 'card-img-startscreen');
-    removeClasslistOf('card-body', 'flex-centering-result');
-    addClasslistOf('card-body', 'space');
-}
-
-
-function enterGameModeResponsive() {
-    addClasslistOf('card-img', 'card-img-game-resp');
-    addClasslistOf('card-body', '.card-body-game-resp');
-}
-
-
-function quitGameMode() {
-    quitGameModeResponsive();
-    removeClasslistOf('card-img', '.card-img-game-resp');
-    removeClasslistOf('card-body', 'card-body-game');
-    removeClasslistOf('card', 'no-border');
-    addClasslistOf('card-img', 'card-img-startscreen'); 
-    removeClasslistOf('card-body', 'flex-centering-result');  
-}
-
-
-function quitGameModeResponsive() {
-    removeClasslistOf('card-img', 'card-img-game-resp');
-    removeClasslistOf('card-body', '.card-body-game-resp');
-}
-
-
 
 // ########## RESET ##########
 function resetVariables() {
@@ -143,36 +88,100 @@ function hideSelection(id) {
     document.getElementById(id).classList.remove('selected-nav-item');
 }
 
-
-
-// ########## PROGRESS BAR ##########
-function renderProgressBar() {
-    getInnerHtmlOfPlus('card-img', renderProgressBarContent());
-    document.getElementById('progress-bar').style = `width: ${progress}%`;
+// ########## RENDER QUIZ ##########
+function renderQuiz(quiz) {
+    resetVariables();
+    selectNav(quiz);
+    getInnerHtmlOf('card-img', renderStartContent(quiz));
+    renderStartBody(quiz);
+    removeClasslistOf('card-body', 'bg-gray');
+    quitGameMode();
 }
 
 
-function renderProgressBarContent() {
-    return `<div class="progress bar absolute" id="progress" style="height: 5px;">
-                <div class="progress-bar bg-success-acid" id="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>`;
+function selectNav(quiz) {
+    resetNavSelection();
+    if(`${quiz}` == 'html') {selectedHTML = 1;}
+    else if (`${quiz}` == 'css') {selectedCSS = 1;}
+    else {selectedJS = 1;}
+    navSelection();
 }
 
 
-function progressBarNext() {
-    progress = 20*(selectedAnswers.length);
-    document.getElementById('progress-bar').style = `width: ${progress}%`;
+function renderStartContent(quiz) {
+    if(`${quiz}` == 'html') {
+        return `<div class="start-screen flex column">Welcome to <br> The Awesome HTML Quiz <br> <span>Ready for the Challange?</span></div>`;
+    } else if (`${quiz}` == 'css') {
+        return `<div class="start-screen flex column">Welcome to <br> The Awesome CSS Quiz <br> <span>Ready for the Challange?</span></div>`;
+    } else {
+        return `<div class="start-screen flex column">Welcome to <br> The Awesome Javascript Quiz <br> <span>Ready for the Challange?</span></div>`;
+    }
 }
 
-// ########## RENDER GAME BODY ##########
-function renderGameBody() {
-    getInnerHtmlOf('card-body', renderGameBodyContent());
+
+function renderStartBody(quiz) {
+    if(`${quiz}` == 'html') {
+        getInnerHtmlOf('card-body', renderHTMLStartBodyContent());
+    } else if (`${quiz}` == 'css') {
+        getInnerHtmlOf('card-body', renderCSSStartBodyContent());
+    } else {
+        getInnerHtmlOf('card-body', renderJSStartBodyContent());
+    }
+}
+
+// HTML
+function renderHTMLStartBodyContent() {
+    return `
+        <h5 class="card-title">HTML</h5>
+        <p class="card-text">Die HTML-Challange ist zum warm werden. Solltest du ohne Probleme hinbekommen!</p>
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="pageMinusOne();start('html')">Spiel starten</a></div>`;
+}
+
+// CSS
+function renderCSSStartBodyContent() {
+    return `
+        <h5 class="card-title">CSS</h5>
+        <p class="card-text">Mache die Challenge erst, wenn du vorherige Challange fehlerfrei bestanden hast.</p>
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="pageMinusOne();start('css')">Spiel starten</a></div>`;
+}
+
+//JS
+function renderJSStartBodyContent() {
+    return `
+        <h5 class="card-title">Javascript</h5>
+        <p class="card-text">Bist du bereit für die Javascript-Challange? Nimm dir 5 Minuten Zeit dafür.</p>
+        <div class="button-container flex"><a href="#" class="btn btn-warning c-white" onclick="pageMinusOne();start('js')">Spiel starten</a></div>`;
+}
+
+// ########## GAME MODE CHANGING THE SCREEN ##########
+function enterGameMode() {
+    enterGameModeResponsive();
+    addClasslistOf('card-body', 'card-body-game');
+    removeClasslistOf('card-img', 'card-img-startscreen');
+    removeClasslistOf('card-body', 'flex-centering-result');
+    addClasslistOf('card-body', 'space');
 }
 
 
-function renderGameBodyContent() {
-    return `<div class="answers flex column" id="answers"></div>
-            <div class="nextPage flex" id="nextPage"></div>`;
+function enterGameModeResponsive() {
+    addClasslistOf('card-img', 'card-img-game-resp');
+    addClasslistOf('card-body', '.card-body-game-resp');
+}
+
+
+function quitGameMode() {
+    quitGameModeResponsive();
+    removeClasslistOf('card-img', '.card-img-game-resp');
+    removeClasslistOf('card-body', 'card-body-game');
+    removeClasslistOf('card', 'no-border');
+    addClasslistOf('card-img', 'card-img-startscreen'); 
+    removeClasslistOf('card-body', 'flex-centering-result');  
+}
+
+
+function quitGameModeResponsive() {
+    removeClasslistOf('card-img', 'card-img-game-resp');
+    removeClasslistOf('card-body', '.card-body-game-resp');
 }
 
 // ########## START THE GAME ##########
@@ -211,24 +220,36 @@ function renderQuestionContent(quiz) {
     }
 }
 
+// HTML
 function renderHTMLQuestion() {
     return `<div class="start-screen question-screen flex">
                 <p class="question">${htmlQuestions[page].question}</p>
             </div>`;
 }
 
-
+//CSS
 function renderCSSQuestion() {
     return `<div class="start-screen question-screen flex">
                 <p class="question">${cssQuestions[page].question}</p>
             </div>`;
 }
 
-
+//JS
 function renderJSQuestion() {
     return `<div class="start-screen question-screen flex">
                 <p class="question">${jsQuestions[page].question}</p>
             </div>`;
+}
+
+// ########## RENDER GAME BODY ##########
+function renderGameBody() {
+    getInnerHtmlOf('card-body', renderGameBodyContent());
+}
+
+
+function renderGameBodyContent() {
+    return `<div class="answers flex column" id="answers"></div>
+            <div class="nextPage flex" id="nextPage"></div>`;
 }
 
 // ########## RENDER THE POSSIBLE ANSWERS ##########
@@ -291,7 +312,7 @@ function coloringAnswersResult(quiz, selected) {
 /** The right answer depends on the current quiz category. */
 function thatsTheRightAnswer(quiz) {
     if (`${quiz}` == 'html') {return htmlQuestions[page].right_answer;}
-    else if (`${quiz}` == 'html') {return  cssQuestions[page].right_answer;}
+    else if (`${quiz}` == 'css') {return  cssQuestions[page].right_answer;}
     else {return jsQuestions[page].right_answer;}
 }
 
